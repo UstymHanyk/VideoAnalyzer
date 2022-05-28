@@ -5,7 +5,6 @@
 #include "tbb/concurrent_queue.h"
 #include "oneapi/tbb/concurrent_hash_map.h"
 
-#include "support_functions.h"
 #include "thread_functions.h"
 
 #include <iostream>
