@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="frame_divider.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="support_functions.cpp" />
     <ClCompile Include="thread_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="frame_divider.h" />
     <ClInclude Include="support_functions.h" />
     <ClInclude Include="thread_functions.h" />
   </ItemGroup>

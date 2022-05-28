@@ -21,12 +21,21 @@
     <ClCompile Include="thread_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="frame_divider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="support_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="thread_functions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="support_functions.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_divider.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
