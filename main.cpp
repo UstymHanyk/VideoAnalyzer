@@ -37,7 +37,7 @@ int main(int argc, char** argv)
     std::mutex working_threads_mutex;
 
 
-    string path = "./test.mp4";
+    string path = "joker_trailer.mp4";
     VideoCapture cap(path);
 
     if (!cap.isOpened()) {
@@ -85,17 +85,25 @@ int main(int argc, char** argv)
         std::cout << "Error while loining threads " << e << std::endl;
     }
     
-    
-    Mat colorSpectre(144, hueRange, CV_8UC3, Scalar(0, 0, 0));
+    // value which the default image will be upscaled by. Original size is 256x128 px. 
+    int upscaleFactor = 4;  
+
+    Mat colorSpectrum(128 * upscaleFactor, hueRange * upscaleFactor, CV_8UC3, Scalar(0, 0, 0));
     vector<float> normalizedlevels = normalizeLevels(global_levels);
     for (int i = 1; i < hueRange; i++)
     {
-        line(colorSpectre, Point((i - 1) * 4, levelsHeight * 2 - normalizedlevels[i - 1]),
-            Point(i * 4, levelsHeight * 2 - normalizedlevels[i]),
-            Scalar(255, 255, 255), 1, 8, 2);
+
+        line(colorSpectrum, Point(i * 4 * upscaleFactor, 0),
+            Point(i * 4 * upscaleFactor, levelsHeight * 2 * upscaleFactor),
+            hueToWeightedBgr(i, normalizedlevels[i]), 3, 8, 2);
+
+        line(colorSpectrum, Point((i - 1) * 4 * upscaleFactor, (levelsHeight - normalizedlevels[i - 1]) * 2 * upscaleFactor),
+            Point(i * 4 * upscaleFactor, (levelsHeight - normalizedlevels[i]) * 2 * upscaleFactor),
+            Scalar(255, 255, 255), 1, LINE_AA, 2);
     }
 
-    imshow("Color Scpectre", colorSpectre);
+    imshow("Color Spectrum", colorSpectrum);
+    //imwrite("test.png", colorSpectrum);
     waitKey();
     cap.release();
 
