@@ -13,6 +13,9 @@ We chose to analyze colors in **HSL** **color** **space**. Unlike RGB it conveni
 We have two properties to deal with -- **saturation** and **lightness**. With saturation it is simple, the more saturated the color the more eye-catchy it is. With lumimance it aslo quite easy, the most promiment colors are at the 50%, as with the luminance increase colors get more white, washed-out and with the decrease tehy get darker. These ideas are combined in a [habr post by akurilov](https://habr.com/ru/post/524978/), where he provides the formula for the "**weight**" of the color:
 > W (S, L) = S * (0.52 - (0.5 - L)2) / 0.52
 
+### Increase working eficency
+To make our computer use all it's resourses we use threads. Because we are doing lots of the same work while analysing each frame it's a good idea to do it in paralel. For that we use oneTBB library. The best solution we fuond is to use 3 types of threads: Dividing, Analysing and Merging. First threads is where we took all nessesary frames from the video and put them into a concurent_queue. Then the next threads analyse frames in this queue pushing results vectors into anuther queue and finaly mergind threads, which are merge all results together. 
+
 ### Accuracy of the analysis
 Analysing fullscale video frames is time and resource consuming, but also **unnecessary**, therefore we downscale each frame to 256x144 px. However, making a frame by frame analysis is **also uncalled-for**, so we analyze n frames with equal time intervals between them. After a quick analysis of below-mentioned graphs it is clear that the **sweet-spot** between accuracy and efficiency is between 50 and 100 frames. *(btw, the film analyzed is The Joker(2019))*
 <table align="center">
