@@ -15,9 +15,22 @@ We have two properties to deal with -- saturation and lightness. With saturation
 ### Results
 As a result we provide a color spectrum, where the graph represents the promimence of the colors, and the higher the hue the more saturated it is.
 
-For example a graph of the Joker(2019) trailer represnts film's color scheme quite accurately
-![result](test.png)
 
+
+The Matrix(1999) with its notoriously green color scheme also seeems to be adequately represented by [the trailer's](https://www.youtube.com/watch?v=m8e-FF8MsqU) color scheme.
+![The Matrix](samples/matrix_colors.png)
+
+Ridley Scott's The Martian(2015) depicts breathtakingly marvelous scenery of the red planet, and a warm color palette with subtle blueish accents masterfully accompanies the film. (There's also a narrow but promiment green spike on the graph due to [the trailer's](https://www.youtube.com/watch?v=ej3ioOneTy8&t=97s) opening screen)
+![The Martian](samples/martian_colors.png)
+
+The Joker
+![The Joker](samples/joker_colors.png)
+
+[3Bule1Brown's video](https://www.youtube.com/watch?v=fNk_zzaMoSs&t=4s) about vectors. 
+![Vectors](samples/vector_colors.png)
+
+[Термінове звернення президента України Володимира Зеленського 22.02.2022](https://www.youtube.com/watch?v=xKJtI_Vw8Rw) 
+![Speech](samples/speech_colors.png)
 
 
 ## Team
