@@ -54,7 +54,7 @@ The Joker
 
 
 ## Team
-- [Bronytskyi Mykhailo]
+- [Bronytskyi Mykhailo](https://github.com/MykhailoBronytskyi)
 - [Dutka Ostap](https://github.com/Ostap2003)
 - [Hanyk Ustym](https://github.com/UstymHanyk)
 - [Hentosh Petro](https://github.com/PHentosh)
