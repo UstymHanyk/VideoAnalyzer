@@ -39,10 +39,8 @@ void ovrework_frame(oneapi::tbb::concurrent_bounded_queue<cv::Mat>& frames, onea
     if (num_of_working_threads == 1){
         levels.clear();
         levels_queue.push(levels);
-        std::cout << "frame_thread_ended" << num_of_working_threads << "\n";
     }
     else {
-        std::cout << "frame_thread_ended" << num_of_working_threads << "\n";
         working_threads_mutex.lock();
         num_of_working_threads--;
         working_threads_mutex.unlock();
@@ -65,7 +63,6 @@ void merge_levels(oneapi::tbb::concurrent_bounded_queue<std::map<int, float>>& l
 
     levels.clear();
     levels_queue.push(levels);
-    std::cout << "merge_thread_ended\n";
     
 
 }

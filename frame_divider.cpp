@@ -22,6 +22,5 @@ void divide_on_frames(cv::VideoCapture &cap, const int inBetweenFrameTime, oneap
         }
     }
 
-    std::cout << "divider_thread_ended\n";
 
 }

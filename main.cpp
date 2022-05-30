@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <thread>
+#include <chrono>
 
 using namespace std;
 using namespace cv;
@@ -17,11 +18,27 @@ using namespace cv;
 
 int main(int argc, char** argv)
 {
+    int num_of_frame_threads;
+    int num_of_merging_threads;
+    string path;
+    bool do_write;
+    bool show;
+
+    if (argc < 2) {
+        num_of_frame_threads = 14;
+        num_of_merging_threads = 10;
+        path = "joker_trailer.mp4";
+        do_write = false;
+        show = false;
+    }
+    else {
+
+    }
+
+
     int hueRange = 256;
     int levelsHeight = 256;
 
-    int num_of_frame_threads = 3;
-    int num_of_merging_threads = 2;
 
     oneapi::tbb::concurrent_bounded_queue<cv::Mat> frame_queue;
     vector<thread> frame_threads;
@@ -36,8 +53,9 @@ int main(int argc, char** argv)
     int num_of_working_threads = num_of_frame_threads;
     std::mutex working_threads_mutex;
 
+    auto time_start = std::chrono::high_resolution_clock::now();
 
-    string path = "joker_trailer.mp4";
+
     VideoCapture cap(path);
 
     if (!cap.isOpened()) {
@@ -60,7 +78,6 @@ int main(int argc, char** argv)
     }
 
 
-    std::cout << "All threads started \n";
 
     try {
         if (frame_read_thread.joinable()) {
@@ -68,7 +85,6 @@ int main(int argc, char** argv)
         }
 
         for (auto& thread : frame_threads) {
-            std::cout << "trying to finish threads\n";
             if (thread.joinable()) {
                 thread.join();
             }
@@ -102,8 +118,21 @@ int main(int argc, char** argv)
             Scalar(255, 255, 255), 1, LINE_AA, 2);
     }
 
-    imshow("Color Spectrum", colorSpectrum);
-    //imwrite("test.png", colorSpectrum);
+    auto time_stop = std::chrono::high_resolution_clock::now();
+
+    long long total_time = std::chrono::duration_cast<std::chrono::microseconds>( time_stop - time_start ).count();
+    std::string name = "Color Spectrum_" + path;
+
+    std::cout << "Total time: " << total_time << std::endl;
+
+    if (show) {
+        imshow(name, colorSpectrum);
+    }
+    
+    if (do_write) {
+        name += ".png";
+        imwrite(name, colorSpectrum);
+    }
     waitKey();
     cap.release();
 
