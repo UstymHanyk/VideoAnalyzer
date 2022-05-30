@@ -29,10 +29,14 @@ int main(int argc, char** argv)
         num_of_merging_threads = 10;
         path = "joker_trailer.mp4";
         do_write = false;
-        show = false;
+        show = true;
     }
     else {
-
+        num_of_frame_threads = stoi(argv[1]);
+        num_of_merging_threads = stoi(argv[2]);
+        path = argv[3];
+        do_write = stoi(argv[4]);
+        show = stoi(argv[5]);
     }
 
 
@@ -65,7 +69,7 @@ int main(int argc, char** argv)
 
 
     int totalFrameCount = cap.get(CAP_PROP_FRAME_COUNT);
-    int inBetweenFrameTime = totalFrameCount / 100;  // in total 20 frames will be analyzed
+    int inBetweenFrameTime = totalFrameCount / 500;  // in total 20 frames will be analyzed
     
     std::thread frame_read_thread(divide_on_frames, std::ref(cap), inBetweenFrameTime, std::ref(frame_queue));
 
@@ -130,8 +134,10 @@ int main(int argc, char** argv)
     }
     
     if (do_write) {
+        name += num_of_frame_threads;
         name += ".png";
         imwrite(name, colorSpectrum);
+        
     }
     waitKey();
     cap.release();
